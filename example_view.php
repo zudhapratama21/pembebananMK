@@ -17,20 +17,18 @@ STOK NUMBER(2)
 
 include "includes/func.inc.php";
 
-$db_user = "pa_example";
-$db_pass = "123";
+$db_user = "PA0010";
+$db_pass = "742309";
 $con = konekDb($db_user, $db_pass);
 
-echo "<strong>VIEW DATA BARANG</strong><br><br>";
-$sql = "SELECT nama_barang, stok FROM barang ORDER BY nama_barang";
-$hasil = query_view($con, $sql);
+echo "<strong>VIEW DATA SATU</strong><br><br>";
+$sql = "SELECT * FROM PEGAWAI";
 
+$hasil = query_view($con, $sql);
+echo $hasil;
 oci_fetch_all($hasil, $rows, 0, 0, OCI_FETCHSTATEMENT_BY_ROW);
 
-    
-foreach ($rows as $hasil) {
-        echo "Nama Barang : " . $hasil['NAMA_BARANG'] ." - Stok : " . $hasil['STOK'] . "<br>";
-    }
 ?>
+
 </body>
 </html>
