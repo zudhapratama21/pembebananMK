@@ -24,12 +24,15 @@ function konekDb($db_user, $db_pass) {
  * @param  string $sql query yang di jalankan
  * @return oci_resource      resouce oci
  */
+
 function query_view($con, $sql, $data)
 {
     $parse = oci_parse($con, $sql);
+
 	foreach ($data as $key => $val) {    
     	oci_bind_by_name($parse, $key, $data[$key]);
 	}
+
     oci_execute($parse);
     return $parse;
 }
@@ -37,6 +40,7 @@ function query_view($con, $sql, $data)
 function query_insert($con, $sql, $data)
 {
     $parse = oci_parse($con, $sql);
+
 	foreach ($data as $key => $val) {    
     	oci_bind_by_name($parse, $key, $data[$key]);
 	}

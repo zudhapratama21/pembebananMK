@@ -9,8 +9,12 @@ include '../../includes/func.inc.php';
 function index (){
     global $connect;
 
-    $sql = "SELECT * FROM PEGAWAI";
-    $hasil = query_view($connect,$sql);
+    $nomor = 111;
+    $sql = "SELECT * FROM PEGAWAI WHERE nomor=:v1" ;
+    $data = array(
+        ':v1' => $nomor
+    );
+    $hasil = query_view($connect,$sql,$data);
 
     oci_fetch_all($hasil, $rows, 0, 0, OCI_FETCHSTATEMENT_BY_ROW);
 
@@ -19,6 +23,7 @@ function index (){
                      'message' =>'Success',
                      'data' => $rows
                   );
+                  
     echo json_encode($response);
 
 }
