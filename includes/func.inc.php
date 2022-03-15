@@ -24,6 +24,13 @@ function konekDb($db_user, $db_pass) {
  * @param  string $sql query yang di jalankan
  * @return oci_resource      resouce oci
  */
+function query_getAll($con, $sql)
+{
+    $parse = oci_parse($con, $sql);	
+
+    oci_execute($parse);
+    return $parse;
+}
 
 function query_view($con, $sql, $data)
 {
