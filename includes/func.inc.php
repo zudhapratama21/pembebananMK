@@ -90,5 +90,7 @@ function query_delete($con, $sql, $data)
     	return "Success Delete";
 	else
 		return "Failed Delete";	
+
+		
 }
 ?>
