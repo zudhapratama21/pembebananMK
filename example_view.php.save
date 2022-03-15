@@ -19,37 +19,20 @@ include "includes/func.inc.php";
 
 $db_user = "PA0010";
 $db_pass = "742309";
-$con = konekDb($db_user, $db_pass);
+$con = konekDb($db_user,$db_pass);
 
-$nomor = 111;
-$sql = "SELECT * FROM PEGAWAI WHERE NOMOR=:v1";
-
-
-$data = array(
-    ':v1' => $nomor
-);
-
-$hasil = query_view($con, $sql,$data);
+echo "<strong>VIEW DATA SATU</strong><br><br>";
+$sql = "SELECT * FROM PEGAWAI";
+$hasil = query_view($con, $sql);
 
 oci_fetch_all($hasil, $rows, 0, 0, OCI_FETCHSTATEMENT_BY_ROW);
 
+echo $rows
+
+    
 foreach ($rows as $hasil) {
-        $item[] = array(
-            'NAMA' => $hasil['NAMA'],
-            'NIP' => $hasil['NIP']
-        );
+        echo "Nama Barang : " . $hasil['NAMA_BARANG'] ." - Stok : " . $hasil['STOK'] . "<br>";
     }
-
-    $json = array (
-        'result' => 'success',
-        'data' => $item
-    );
-
-     echo json_encode($json);
-
 ?>
-
-
 </body>
 </html>
- 
