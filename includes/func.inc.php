@@ -32,14 +32,6 @@ function query_getAll($con, $sql)
     return $parse;
 }
 
-function query_getAll($con, $sql)
-{
-    $parse = oci_parse($con, $sql);	
-
-    oci_execute($parse);
-    return $parse;
-}
-
 function query_view($con, $sql, $data)
 {
     $parse = oci_parse($con, $sql);
@@ -91,6 +83,6 @@ function query_delete($con, $sql, $data)
 	else
 		return "Failed Delete";	
 
-		
+
 }
 ?>

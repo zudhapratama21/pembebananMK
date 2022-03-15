@@ -7,29 +7,57 @@ include '../koneksi.php';
         $_GET['function']();
      }
 
-function getDosen(){
-    global $connect;
+    function getDosen(){
+        global $connect;
 
-    $sql = "SELECT * FROM PEGAWAI" ;
-    $data = array(
-        ':v1' => $nomor
-    );
-    $hasil = query_getAll($connect,$sql);
-
-    oci_fetch_all($hasil, $rows, 0, 0, OCI_FETCHSTATEMENT_BY_ROW);
+        $sql = "SELECT * FROM PEGAWAI";
     
-    foreach ($rows as $hasil) {
-        $item[] = $hasil;
+        $hasil = query_getAll($connect,$sql);
+
+        oci_fetch_all($hasil, $rows, 0, 0, OCI_FETCHSTATEMENT_BY_ROW);
+        
+        foreach ($rows as $hasil) {
+            $item[] = $hasil;
+        }
+
+        $json = array (
+            'result' => 'success',
+            'data' => $item
+        );
+
+    echo json_encode($json);
     }
 
-    $json = array (
-        'result' => 'success',
-        'data' => $item
-    );
+    function getDosenById()
+    {        
+      global $connect;
 
-   echo json_encode($json);
-}
-?>
+      if (!empty($_GET["nomor"])) {
+         $id = $_GET["nomor"];      
+      }  
+
+      $sql = "SELECT * FROM PEGAWAI WHERE NOMOR=:v1";
+
+      $data = array(
+        ':v1' => $id
+      );
+    
+      $hasil = query_view($connect,$sql,$data);
+
+      oci_fetch_all($hasil, $rows, 0, 0, OCI_FETCHSTATEMENT_BY_ROW);
+        
+      foreach ($rows as $hasil) {
+          $item[] = $hasil;
+      }
+
+      $json = array (
+          'result' => 'success',
+          'data' => $item
+      );
+
+      echo json_encode($json);
+    }
+
 
 
 
