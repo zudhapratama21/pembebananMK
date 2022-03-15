@@ -35,8 +35,20 @@ oci_fetch_all($hasil, $rows, 0, 0, OCI_FETCHSTATEMENT_BY_ROW);
 
     
 foreach ($rows as $hasil) {
-        echo "Nama Barang : " . $hasil['NIP'] ." - Stok : " . $hasil['NAMA'] . "<br>";
+        $item[] = array(
+            'NAMA' => $hasil['NAMA'],
+            'NIP' => $hasil['NIP']
+        );
     }
+
+    $json = array (
+        'result' => 'success',
+        'data' => $item
+    );
+
+    echo $json['data'];
+
 ?>
 </body>
 </html>
+ 

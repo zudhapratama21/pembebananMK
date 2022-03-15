@@ -18,14 +18,24 @@ function index (){
 
     oci_fetch_all($hasil, $rows, 0, 0, OCI_FETCHSTATEMENT_BY_ROW);
 
-    $response = array(
-                     'status' => 1,
-                     'message' =>'Success',
-                     'data' => $rows
-                  );
-                  
-    echo json_encode($response);
+    foreach ($rows as $hasil) {
+        $item[] = array(
+            'NAMA' => $hasil['NAMA'],
+            'NIP' => $hasil['NIP']
+        );
+    }
+
+    $json = array (
+        'result' => 'success',
+        'data' => $item
+    );
+
+    echo $json['data'];
 
 }
+
+
+
+?>
 
 
