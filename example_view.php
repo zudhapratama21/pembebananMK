@@ -21,15 +21,16 @@ $db_user = "PA0010";
 $db_pass = "742309";
 $con = konekDb($db_user, $db_pass);
 
-echo "<strong>VIEW DATA SATU</strong><br><br>";
-$sql = "SELECT * FROM PEGAWAI";
+$nomor = 111;
+$sql = "SELECT * FROM PEGAWAI WHERE NOMOR=:v1";
 
-$nomor =  111;
+
 $data = array(
     ':v1' => $nomor
 );
 
-$hasil = query_getAll($con, $sql);
+$hasil = query_view($con, $sql,$data);
+
 oci_fetch_all($hasil, $rows, 0, 0, OCI_FETCHSTATEMENT_BY_ROW);
 
 foreach ($rows as $hasil) {
