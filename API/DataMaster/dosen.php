@@ -9,9 +9,7 @@ include '../koneksi.php';
 
     function getDosen(){
         global $connect;
-
-        $sql = "SELECT * FROM PEGAWAI";
-    
+        $sql = "SELECT * from PEGAWAI WHERE STAFF = 4 AND JURUSAN IN (12,4,10)";
         $hasil = query_getAll($connect,$sql);
 
         oci_fetch_all($hasil, $rows, 0, 0, OCI_FETCHSTATEMENT_BY_ROW);
@@ -36,7 +34,7 @@ include '../koneksi.php';
          $id = $_GET["nomor"];      
       }  
 
-      $sql = "SELECT * FROM PEGAWAI WHERE NOMOR=:v1";
+      $sql = "SELECT * FROM PEGAWAI WHERE NOMOR=:v1 AND STAFF=4 AND JURUSAN IN (10,12,4)";
 
       $data = array(
         ':v1' => $id
@@ -57,11 +55,6 @@ include '../koneksi.php';
 
       echo json_encode($json);
     }
-
-
-
-
-
 ?>
 
 
