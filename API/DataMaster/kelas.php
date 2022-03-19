@@ -7,10 +7,10 @@ include '../koneksi.php';
         $_GET['function']();
      }
 
-    function getDosen(){
+    function getKelas(){
         global $connect;
 
-        $sql = " SELECT * from PEGAWAI WHERE STAFF = 4 AND JURUSAN IN (12,4,10)";
+        $sql = " SELECT * from KELAS WHERE PROGRAM IN (1,2,3,4) AND JURUSAN IN (10,12,4)";
     
         $hasil = query_getAll($connect,$sql);
 
@@ -28,7 +28,7 @@ include '../koneksi.php';
        echo json_encode($json);
     }
 
-    function getDosenById()
+    function getKelasById()
     {        
       global $connect;
 
@@ -36,7 +36,7 @@ include '../koneksi.php';
          $id = $_GET["nomor"];      
       }  
 
-      $sql = "SELECT * FROM PEGAWAI WHERE NOMOR=:v1";
+      $sql = "SELECT * from KELAS WHERE NOMOR=:v1 AND PROGRAM IN (1,2,3,4) AND JURUSAN IN (10,12,4)";
 
       $data = array(
         ':v1' => $id
@@ -57,11 +57,7 @@ include '../koneksi.php';
 
       echo json_encode($json);
     }
-
-
-
-
-
+    
 ?>
 
 
