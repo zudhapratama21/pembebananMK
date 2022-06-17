@@ -50,10 +50,12 @@ include '../koneksi.php';
           $item[] = $hasil;
       }
 
+
       $json = array (
           'result' => 'success',
           'data' => $item
       );
+      header('Content-Type : application/json');
 
       echo json_encode($json);
     }

@@ -14,7 +14,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h4>Tabel List Jurusan</h4>
+                <h4>Tabel Angkatan</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -22,24 +22,18 @@
                     <thead>
                       <tr>                           
                         <th>#</th>
-                        <th>Nama Jurusan</th>                           
+                        <th>Angkatan</th>                           
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="(jurusans,index) in jurusan" :key="index">                           
+                      <tr v-for="(angkatans,index) in angkatan" :key="index">                           
                         <td>{{ index + 1}}</td> 
-                        <td>{{ jurusans.JURUSAN}}</td>                            
+                        <td>{{ angkatans.ANGKATAN}}</td>                            
                         <td>
-
-                          <router-link :to="{ name: 'matakuliah.angkatan', params:{ id_jurusan:jurusans.NOMOR , id_prodi : 3} } ">
-                              <span class="btn btn-primary btn-sm mr-2">List Semester D3</span>
-                          </router-link>
-
-                          <router-link :to="{ name: 'matakuliah.angkatan', params:{ id_jurusan:jurusans.NOMOR , id_prodi : 4} } ">
-                              <span class="btn btn-info btn-sm">List Semester D4</span>
-                          </router-link>
-
+                          <router-link :to="{ name: 'pembebananD3.listSemester', params:{ id_jurusan: id_jurusan , id_prodi : id_prodi , id_angkatan : angkatans.ANGKATAN } } ">
+                              <span class="btn btn-primary btn-sm mr-2">Detail Mata Kuliah</span>
+                          </router-link>                        
                         </td>
                       </tr>                          
                     </tbody>
@@ -60,27 +54,33 @@ export default {
   name: 'matakuliah',  
    data(){
     return {
-      jurusan : [],  
-      token : ''    
+      angkatan : [],  
+      token : '',
+      id_jurusan : this.$route.params.id_jurusan,
+      id_prodi :this.$route.params.id_prodi,
     }
   },
   mounted() {
+
   this.token = this.$cookies.get('token'); 
       if (!this.token) {
         this.$router.push(`/login`)
       }
-    this.getMataKuliah();
+    this.getAngkatan();
+
   },
   methods: {    
-    async getMataKuliah(){   
+    async getAngkatan(){   
         let config = {
                 headers: {
                     'Authorization': 'Bearer ' + this.token
                 },
             }    
-      let response = await axios.get('https://project.mis.pens.ac.id/mis129/API/DataMaster/matakuliah.php?function=getJurusanUser',config)
+
+      let response = await axios.get('https://project.mis.pens.ac.id/mis129/API/DataMaster/Angkatan.php?function=getAngkatan',config)
+
       if (response.status == 200) {
-          this.jurusan = response.data.data  
+          this.angkatan = response.data.data  
           
       } else {
         console.log('gagal');        

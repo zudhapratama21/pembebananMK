@@ -21,8 +21,12 @@
               <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Pembebanan MK</span></a>
                 <ul class="dropdown-menu">
-                  <li><a class="nav-link" href="DatabebanD3/DataBebanD3.html">Data Beban D3</a></li>
-                  <li><a class="nav-link" href="DatabebanD4/DataBebanD4.html">Data Beban D4</a></li>
+                  <li>
+                    <router-link class="nav-link" to="/pembebananD3/3">Pembebanan D3</router-link>                                                             
+                  </li>
+                  <li>
+                    <router-link class="nav-link" to="/pembebananD4/4">Pembebanan D4</router-link>
+                  </li>
                   <li><a class="nav-link" href="BebanDosen.html">Beban Perdosen</a></li>
                 </ul>
               </li>
@@ -35,11 +39,8 @@
                       <router-link class="nav-link" to="/dosen">Data Dosen</router-link>                      
                   </li>
                   <li>
-                    <router-link class="nav-link" to="/dosen">Data Kelompok Bidang</router-link>                                          
-                  </li>
-                  <li>
-                    <router-link class="nav-link" to="/departemen">Departemen</router-link>                                           
-                  </li>              
+                    <router-link class="nav-link" to="/kelompokbidang">Data Kelompok Bidang</router-link>                                          
+                  </li>                               
                 </ul>
               </li>
               <li class="nav-item dropdown">
@@ -53,12 +54,19 @@
                   </li>
                   <li>
                     <router-link class="nav-link" to="/jurusan">Jurusan</router-link>                                        
+                  </li>                                
+                </ul>
+              </li>
+               
+              <li class="nav-item dropdown">
+                <a href="" class="nav-link has-dropdown"><i class="fas fa-cogs"></i><span>Setting</span></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <router-link class="nav-link" to="/setjurusan">Set Jurusan</router-link>                                         
                   </li>
-                  <!-- <li>
-                    <router-link to="/matakuliah">
-                      <a class="nav-link">Mata Kuliah</a>
-                    </router-link>
-                  </li> -->                  
+                  <li>
+                    <router-link class="nav-link" to="/setsks">Set Maksimal SKS</router-link>                                          
+                  </li>                                                
                 </ul>
               </li>
             </ul>           
